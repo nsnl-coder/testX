@@ -20,6 +20,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint'],
   rules: {
+    'no-underscore-dangle': 0,
     'react/react-in-jsx-scope': 0,
     'react/jsx-one-expression-per-line': 0,
     'import/no-extraneous-dependencies': [
