@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import Quiz from './Quiz';
 import lodash from 'lodash';
+
+import Quiz from './Quiz';
 
 const useGetQuizzesByDocument = (documentId: string | undefined) => {
   const queryFn = async () => {

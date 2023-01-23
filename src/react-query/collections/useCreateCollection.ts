@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useMutation, useQueryClient } from 'react-query';
+import Collection from './collection';
 
 const useCreateCollection = () => {
   const queryClient = useQueryClient();
@@ -10,8 +11,7 @@ const useCreateCollection = () => {
       url: '/api/v1/collections',
       data: {
         document: documentId,
-        ordering: queryClient.getQueryCache().find('collections')?.state?.data
-          ?.length,
+        ordering: queryClient.getQueryData<Collection[]>('collections')?.length,
       },
     });
 
