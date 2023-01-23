@@ -14,7 +14,7 @@ const useCreateQuiz = (
       data: {
         document: id,
         collectionId,
-        question: 'blank question',
+        question: '1.',
       },
     });
 
