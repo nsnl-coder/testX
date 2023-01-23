@@ -8,7 +8,7 @@ function Home(): JSX.Element {
 
   return (
     <div>
-      <ul className="grid grid-cols-4 gap-6">
+      <ul className="grid grid-cols-8 gap-6">
         <NewDocument />
         {data?.map((doc) => (
           <Card key={doc._id} document={doc} />

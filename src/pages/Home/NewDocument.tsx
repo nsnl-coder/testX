@@ -11,6 +11,7 @@ function NewDocument(): JSX.Element {
 
     if (nameRef.current?.value) {
       mutate(nameRef.current?.value);
+      nameRef.current.value = '';
     }
   };
 
