@@ -1,7 +1,7 @@
 import Quizz from '@src/react-query/quizzes/Quiz';
 import useDeleteQuiz from '@src/react-query/quizzes/useDeleteQuiz';
 import useUpdateQuiz from '@src/react-query/quizzes/useUpdateQuiz';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 interface Props {
   quiz: Quizz;
@@ -10,6 +10,7 @@ interface Props {
 function Quiz(props: Props): JSX.Element {
   const questionRef = useRef<HTMLInputElement | null>(null);
   const answerRef = useRef<HTMLTextAreaElement | null>(null);
+  const [isChange, setIsChange] = useState<boolean>(false);
 
   const { quiz } = props;
   const { deleteQuiz, isLoading } = useDeleteQuiz(quiz._id, quiz.collectionId);
@@ -22,6 +23,7 @@ function Quiz(props: Props): JSX.Element {
         question: questionRef.current?.value,
         answer: answerRef.current?.value,
       });
+      setIsChange(false);
     }
   };
 
@@ -36,6 +38,7 @@ function Quiz(props: Props): JSX.Element {
         className="border outline-none p-2 mb-4"
         defaultValue={quiz.question}
         ref={questionRef}
+        onChange={() => setIsChange(true)}
       />
       <textarea
         name="answer"
@@ -44,6 +47,7 @@ function Quiz(props: Props): JSX.Element {
         }`}
         ref={answerRef}
         defaultValue={quiz.answer}
+        onChange={() => setIsChange(true)}
       />
       <div className="flex justify-between py-3">
         <button
@@ -56,7 +60,9 @@ function Quiz(props: Props): JSX.Element {
         </button>
         <button
           type="button"
-          className="px-5 py-1 bg-gray-400"
+          className={
+            isChange ? 'px-5 py-1 bg-yellow-400' : 'px-5 py-1 bg-gray-400'
+          }
           onClick={updateHandler}
         >
           Saves
